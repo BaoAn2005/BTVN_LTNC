@@ -1,0 +1,11 @@
+string hackerrankInString(string s) {
+    const string t = "hackerrank";
+    int p = 0;
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] == t[p]) p++;
+        if (p == t.size() - 1) break;
+    }
+    if (p == t.size() - 1) return "YES";
+    return "NO";
+    
+}
