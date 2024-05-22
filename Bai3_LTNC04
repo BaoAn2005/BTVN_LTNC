@@ -1,0 +1,21 @@
+int palindromeIndex(string s) {
+    int a = 0, b = s.size() - 1;
+    int container_a = a, container_b = b;
+    bool error = false;
+    if (s.size() >= 3) {
+        while (a <= b) {
+            if (s[a] != s[b]) {
+                if (error) return container_b;
+                error = true;
+                container_a = a;
+                container_b = b;
+                a++;
+            }
+            else {
+                a++;
+                b--;
+            }
+        }
+    }
+    return error ? container_a : -1;
+}
