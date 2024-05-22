@@ -1,0 +1,43 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <sstream>
+using namespace std;
+
+
+int main() {
+    int n, queries;
+    cin >> n >> queries;
+    cin.ignore();
+    
+    vector<vector<int>> a(n);
+    
+    for (int i = 0; i < n; i++) {
+        string line;
+        getline(cin, line);
+        istringstream ss(line);
+        
+        int size, item;
+        ss >> size;
+        vector<int> k(size, 0);
+        for (int j = 0; j < size; j++) {
+            ss >> item;
+            k[j] = item;
+        }
+        
+        a[i] = k;
+    }
+    
+    for (int i = 0; i < queries; i++) {
+        string q;
+        getline(cin, q);
+        istringstream ss(q);
+        
+        int x, y;
+        ss >> x >> y;
+        cout << a[x][y] << endl;
+    }
+    return 0;
+}
