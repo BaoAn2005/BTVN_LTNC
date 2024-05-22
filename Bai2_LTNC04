@@ -1,0 +1,11 @@
+int equalizeArray(vector<int> arr) {
+    map <int, int> a;
+    for(int& i : arr) a[i]++; 
+    map<int, int>::iterator itr = a.begin();
+    int min = arr.size() - 1;
+    for(itr; itr != a.end(); itr++) {
+        int num = arr.size() - itr -> second;
+        min = (num < min) ? num : min;
+    }
+    return min;
+}
