@@ -1,0 +1,15 @@
+int bitwiseAnd(int N, int K) {
+    int max = 0;
+    int findmax;
+    list<int> mylist;
+    if (K == 1) return findmax = 0;
+    else {
+        for (int i = 2; i < N; i++) {
+            for (int j = i + 1; j <= N; j++) {
+                max = i & j;
+                if (max < K && max >= findmax) findmax = max;
+            }
+        }
+    }
+    return findmax;
+}
