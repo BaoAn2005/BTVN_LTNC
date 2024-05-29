@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main() {
+	vector<char> arr = { 'a', 'b', 'c', 'd' };
+	for (int i = 0; i < arr.size(); i++) {
+		for (int j = 0; j < arr.size(); j++) {
+			for (int k = 0; k < arr.size(); k++) {
+				string s;
+				s += arr[i];
+				
+				s += arr[j];
+				s += arr[k];
+				cout << s << endl;
+			}
+		}
+	}
+	return 0;
+}
