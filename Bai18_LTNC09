@@ -1,0 +1,24 @@
+int main() {
+    int dd, mm, yy;
+    cin >> dd >> mm >> yy;
+    
+    int dDue, mDue, yDue;
+    cin >> dDue >> mDue >> yDue;
+    
+    int a, b, c;
+    a = dd - dDue;
+    b = mm - mDue;
+    c = yy - yDue;
+    
+    if (c > 0) cout << "10000";
+    else if (c < 0) cout << "0";
+    else {
+        if (b > 0) cout << b * 500;
+        else if (b < 0) cout << "0";
+        else {
+            if (a > 0) cout << a * 15;
+            else cout << "0";
+        }
+    }
+    return 0;
+}
