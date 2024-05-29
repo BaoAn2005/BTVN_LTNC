@@ -1,0 +1,20 @@
+int ans = 0;
+
+int powerSum(int X, int sum, int p, int N) {
+    if (X == 0) ans++;
+    int m = (int) pow(sum, 1.0 / N);
+    for (int i = p + 1; i <= m; i++) {
+        int res = X - pow(i, N);
+        if (res >= 0) powerSum(res, sum, i, N);
+    }
+    return ans;
+}
+
+
+int main()
+{
+    int X, N;
+    cin >> X >> N;
+    cout << powerSum(X, X, 0, N);
+    return 0;
+}
