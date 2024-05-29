@@ -1,0 +1,24 @@
+int main() { 
+    set <int> s;
+    int query;
+    cin >> query;
+    for (int i = 0; i < query; i++) {
+        int q;
+        int n;
+        cin >> q >> n;
+        switch (q) {
+            case 1:
+                s.insert(n);
+                break;
+            case 2:
+                s.erase(n);
+                break;
+            case 3:
+                auto itr = s.find(n);
+                if (itr != s.end()) cout << "Yes" << endl;
+                else cout << "No" << endl;
+                break;
+        }
+    }
+    return 0;
+}
