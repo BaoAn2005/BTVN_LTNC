@@ -1,0 +1,85 @@
+vector<string> split(const string &word) {
+    vector<string> ans;
+    stringstream ss(word);
+    string w;
+    while(getline(ss, w, ';')) ans.push_back(w);
+    return ans;
+}
+
+bool horizontal(const vector<string> &grid, const string &w, int r, int c) {
+    if (w.size() + c > grid.size()) return false;
+    for (int i = 0; i < w.size(); i++) {
+        if (grid[r][c + i] != '-' && grid[r][c + i] != w[i]) return false;
+    }
+    return true;
+}
+
+bool vertical(const vector<string> &grid, const string &w, int r, int c) {
+    if (w.size() + r > grid.size()) return false;
+    for (int i = 0; i < w.size(); i++) {
+        if (grid[r + i][c] != '-' && grid[r + i][c] != w[i]) return false;
+    }
+    return true;
+}
+
+void wordH(vector<string> &grid, vector<bool> &place, const string &w, int r, int c) {
+    for (int i = 0; i < w.size(); i++) {
+        if (grid[r][c + i] == '-') {
+            grid[r][c + i] = w[i];
+            place[i] = true;
+        }
+    }
+}
+
+void wordV(vector<string> &grid, vector<bool> &place, const string &w, int r, int c) {
+    for (int i = 0; i < w.size(); i++) {
+        if (grid[r + i][c] == '-') {
+            grid[r + i][c] = w[i];
+            place[i] = true;
+        }
+    }
+}
+
+void eraseH(vector<string> &grid, vector<bool> &place, const string &w, int r, int c) {
+    for (int i = 0; i < w.size(); i++) {
+        if (place[i]) {
+            grid[r][c + i] = '-';
+        }
+    }
+}
+
+void eraseV(vector<string> &grid, vector<bool> &place, const string &w, int r, int c) {
+    for (int i = 0; i < w.size(); i++) {
+        if (place[i]) {
+            grid[r + i][c] = '-';
+        }
+    }
+}
+
+bool solvePuzzle(vector<string> &grid, vector<string> &word, int n) {
+    if (n == word.size()) return true;
+    string w = word[n];
+    for (int i = 0; i < grid.size(); i++) {
+        for (int j = 0; j < grid[0].size(); j++) {
+            if (horizontal(grid, w, i, j)) {
+                vector<bool> place(w.size(), false);
+                wordH(grid, place, w, i, j);
+                if (solvePuzzle(grid, word, n + 1)) return true;
+                eraseH(grid, place, w, i, j);
+            }
+            if (vertical(grid, w, i, j)) {
+                vector<bool> place(w.size(), false);
+                wordV(grid, place, w, i, j);
+                if (solvePuzzle(grid, word, n + 1)) return true;
+                eraseV(grid, place, w, i, j);
+            }
+        }
+    }
+    return false;
+}
+
+vector<string> crosswordPuzzle(vector<string> crossword, string words) {
+    vector<string> list = split(words);
+    solvePuzzle(crossword, list, 0);
+    return crossword;
+}
