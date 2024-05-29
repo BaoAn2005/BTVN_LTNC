@@ -1,0 +1,17 @@
+int main()
+{
+    string S;
+    getline(cin, S);
+    
+    try {
+        
+        int n = stoi(S);
+        cout << n;
+    }
+    
+    catch (const exception&){
+        cout << "Bad String";
+    }
+    
+    return 0;
+}
