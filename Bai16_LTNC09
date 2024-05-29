@@ -1,0 +1,38 @@
+int main()
+{
+    string n_temp;
+    getline(cin, n_temp);
+
+    int n = stoi(ltrim(rtrim(n_temp)));
+
+    string a_temp_temp;
+    getline(cin, a_temp_temp);
+
+    vector<string> a_temp = split(rtrim(a_temp_temp));
+
+    vector<int> a(n);
+
+    for (int i = 0; i < n; i++) {
+        int a_item = stoi(a_temp[i]);
+
+        a[i] = a_item;
+    }
+
+    // Write your code here
+    int elementswap = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (a[j] > a[j + 1]) {
+                swap(a[j], a[j + 1]);
+                elementswap++;
+            }
+        }
+        if (elementswap == 0) break;
+    }
+    
+    cout << "Array is sorted in " << elementswap << " swaps." << endl
+<< "First Element: " << a[0] << endl
+<< "Last Element: " << a[n - 1] << endl;
+    
+    return 0;
+}
