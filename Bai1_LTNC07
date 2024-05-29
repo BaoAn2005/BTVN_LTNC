@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int binarySearch(int num, int num1, int  num2, vector<int> arr) {
+    if (num1 <= num2) {
+        int mid = num1 + (num2 - num1) / 2;
+        if (arr[mid] == num) return mid;
+
+        if (arr[mid] < num) return binarySearch(num, mid + 1, num2, arr);
+
+        
+        if (arr[mid] > num) return binarySearch(num, num1, mid - 1, arr);
+    }
+}
+
+int main() {
+    int num;
+    cin >> num;
+    int vecsize;
+    cin >> vecsize;
+    vector <int> arr;
+    for (int i = 0; i < vecsize; i++) {
+        int temp;
+        cin >> temp;
+        arr.push_back(temp);
+    }
+
+    sort(arr.begin(), arr.end());
+    int ans = binarySearch(num, 0, vecsize - 1, arr);
+    if (ans != 0) cout << "Answer: " << ans << endl;
+    else cout << "Try again" << endl;
+    
+    return 0;
+}
